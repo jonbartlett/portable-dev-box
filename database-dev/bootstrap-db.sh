@@ -22,7 +22,7 @@ tar -xvf ibm_data_server_runtime_client_linuxia32_v10.5.tar
 rm ibm_data_server_runtime_client_linuxia32_v10.5.tar
 
 # run pre-reqs script
-cd rctl
+cd rtcl
 ./db2prereqcheck
 
 # dodgy hack to work around issues reported by db2prereqcheck
