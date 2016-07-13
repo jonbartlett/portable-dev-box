@@ -59,6 +59,7 @@ If the DB2 server you are connecting to requires a SSL connection, you will need
 gunzip *.gz
 tar -xvf *.tar
 ```
+* Move the extracted directory and files onto the ext4 filesystem, and change permissions to 0755 (as dpkg-deb will complain about bad permissions and refuse to create the deb packages).
 * Convert the IBM rpms to deb for use with Ubuntu (ensure ```rpm``` and ```alien``` are installed):
 ```
 for rpm in gsk*.rpm ; do sudo alien -c -d $rpm ; done
