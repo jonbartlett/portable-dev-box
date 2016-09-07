@@ -34,7 +34,7 @@ Add proxy support in Vagrant:
 
 Import Ubuntu box
 
-```vagrant box add ubuntu/trusty32```
+```vagrant box add ubuntu/trusty64```
 
 Bring up and provision instance
 

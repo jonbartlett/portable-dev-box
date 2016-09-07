@@ -7,11 +7,10 @@ DB2_SOURCE_LOCATION="$1"
 
 ## core packages
 #sudo apt-get update
-sudo apt-get install -y wget
 sudo apt-get install -y ksh
 sudo apt-get install -y libaio1 libaio-dev
 
-# if DB2 source location passed in then use this else try and d/l source
+# if DB2 source location passed in then use this
 if [ -r "$DB2_SOURCE_LOCATION" ]
 then
 
@@ -20,11 +19,8 @@ then
 
 else
 
-  # Retrieves and extracts the DB2 binaries
-  # If it does not work, change the README https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md
-  DOWNLOAD_LINK=$(curl --url https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md -s | tail -1)
-  echo "$DOWNLOAD_LINK"
-  cd /tmp ; wget --progress=dot:mega "$DOWNLOAD_LINK"
+  echo "could not find DB2 source file"
+  exit 1
 
 fi
 
@@ -41,7 +37,6 @@ sudo ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so.0
 cd /tmp/server_t ; ./db2prereqcheck -l
 
 # Install DB2 and creates an instance (Response file)
-#cd /tmp ; wget https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/db2/db2.rsp
 cp /vagrant/db2/db2.rsp /tmp
 cd /tmp/server_t ; sudo ./db2setup -r /tmp/db2.rsp || cat /tmp/db2setup.log
 
@@ -77,6 +72,9 @@ sudo su - db2inst1 -c "db2 connect to TSTDWD01 ; db2 -tvf /vagrant/db2/db2look_t
 echo "create Schema"
 sudo su - db2inst1 -c "db2 connect to TSTDWD01 ; db2 -tvf /vagrant/db2/db2look_tst.sql" > /vagrant/db2/db2look_tst.log
 
+
+# Change password for db2inst1 to something we know (same as username)
+sudo su - root -c "echo 'db2inst1:db2inst1' | chpasswd"
 
 # Retrieve, extract and install log4db2
 #sudo su - db2inst1 -c "cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz"

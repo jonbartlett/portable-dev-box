@@ -4,7 +4,7 @@ A Ubuntu VM with a DB2 database
 
 For now this includes the following:
 
-* DB2 Server (10.5.0.7) for Linux 32 bit
+* DB2 Server (10.5.0.7) for Linux 64 bit
 * [DB2Unit](https://github.com/angoca/db2unit) - Unit testing framework for DB2
 
 Inspired and built upon [DB2Unit](https://github.com/angoca/db2unit) and [db2-travis](https://github.com/angoca/db2-travis) by Andres Gomez Casanova.
@@ -41,6 +41,8 @@ clpplus -nw <username>@<db hostname>:<db port>/<db name>
 
 ### Download Link
 
-The following download link is used by ```bootstrap.sh``` to fetch the required source. Update this link as required (Google the file name to find the links on the IBM website as it is a minefield to navigate). The link should always be the last line of the this document and contain no blank lines after the link.
+*07/09/2016* Looks like IBM finally caught on to the fact that anyone could download their DB2 Server source directly from their website. Now you will need to go to IBM Support and download DB2 10.5 Fix Pack 7 for Linux/x86-64 (64 bit) ```v10.5fp7_linuxx64_server_t.tar.gz```.
 
-https://delivery04.dhe.ibm.com/sdfdl/v2/sar/CM/IM/05uh6/2/Xa.2/Xb.jusyLTSp44S0wesQs3mVtAb8F6bWBYC76oSg8-l-C-kOeopWWG_V3VSPq3k/Xc.CM/IM/05uh6/2/v10.5fp7_linuxia32_server_t.tar.gz/Xd./Xf.LPR.D1vk/Xg.8657617/Xi.habanero/XY.habanero/XZ.TqUrXvUM1we2MJwjv5FM8YxPYF4/v10.5fp7_linuxia32_server_t.tar.gz
+~~The following download link is used by ```bootstrap.sh``` to fetch the required source. Update this link as required (Google the file name to find the links on the IBM website as it is a minefield to navigate). The link should always be the last line of the this document and contain no blank lines after the link.
+
+https://delivery04.dhe.ibm.com/sdfdl/v2/sar/CM/IM/05uh6/2/Xa.2/Xb.jusyLTSp44S0wesQs3mVtAb8F6bWBYC76oSg8-l-C-kOeopWWG_V3VSPq3k/Xc.CM/IM/05uh6/2/v10.5fp7_linuxia32_server_t.tar.gz/Xd./Xf.LPR.D1vk/Xg.8657617/Xi.habanero/XY.habanero/XZ.TqUrXvUM1we2MJwjv5FM8YxPYF4/v10.5fp7_linuxia32_server_t.tar.gz~~
