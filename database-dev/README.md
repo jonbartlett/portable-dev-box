@@ -13,15 +13,13 @@ CLI for DB2.
 
 ### Installation
 
-* Download IBM Data Server Runtime Client from [here](http://www-01.ibm.com/support/docview.wss?uid=swg21385217). You may or may not have to sign up for an IBM account to be able to download. Select the Linux 32bit version "IBM Data Server Runtime Client (Windows 32-bit AMD and Intel x86)". 
-* Place downloaded file ```ibm_data_server_runtime_client_linuxia32_v10.5.tar.gz``` in your Vagrant directory.
+* Download IBM Data Server Runtime Client from [here](http://www-01.ibm.com/support/docview.wss?uid=swg21385217). You may or may not have to sign up for an IBM account to be able to download. Select the Linux 64bit version "IBM Data Server Runtime Client (Linux AMD64 and Intel EM64T)". 
+* Place downloaded file ```ibm_data_server_runtime_client_linuxx64_v11.1.tar.gz``` in your Vagrant directory.
 * [Provision](../README.markdown) Vagrant instance.
 
 Provisioning steps are detailed in ```bootstrap-db.sh```. You may want to run these manually.
 
 Currently the install is performed non-root as user vagrant. This results in the DB2 client being installed into ```~/sqllib```. Whilst this works, further investigation is to be performed to install as root in ```/opt/ibm``` as originally intended.
-
-*NB: at the time of writing the current version of the IBM Data Server Driver Package was 10.5*
 
 ### Usage
 
@@ -53,8 +51,8 @@ If the DB2 server you are connecting to requires a SSL connection, you will need
 
 ### Installation
 
-* Download GSKit V8 from [here](http://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/Tivoli/IBM+Global+Security+Kit&function=fixId&fixids=8.0.14.*-GSKIT-Linux32*). You may need a valid IBM support account to do this.
-* Place downloaded file in the Vagrant directory so that is it accessible via the VM instance.
+* Download GSKit V8 from [here](http://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/Tivoli/IBM+Global+Security+Kit&function=fixId&fixids=8.0.14.*-GSKIT-Linux*). You may need a valid IBM support account to do this.
+* Place downloaded file ```8.0.14.43-ISS-GSKIT-LinuxX64-FP0043.tar.gz``` in the Vagrant directory so that is it accessible via the VM instance.
 ```
 gunzip *.gz
 tar -xvf *.tar
