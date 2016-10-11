@@ -20,6 +20,8 @@ sudo apt-get install -y dos2unix
 sudo apt-get install -y nmon
 sudo apt-get install -y ack-grep # http://beyondgrep.com/ & https://github.com/mileszs/ack.vim
 sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
+sudo apt-get install -y llvm libz-dev libssl-dev libreadline-dev # for rbenv
+
 
 # install system ruby but not the old version as rbenv builds require 2.0+ (not 1.9)
 sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev llvm # for ruby-build
@@ -63,9 +65,9 @@ echo '#rbenv config' >> ~/.bashrc
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build # install ruby-build
-#rbenv install rbx-3.27
+#rbenv install 2.3.1
 #touch /home/vagrant/.rbenv/version
-#echo "rbx-3.27" >> /home/vagrant/.rbenv/version
+#echo "2.3.1" >> /home/vagrant/.rbenv/version
 
 ## Vim
 
@@ -86,5 +88,6 @@ sudo make install
 git clone https://gist.github.com/faf43c9535dfe6a3ae8b89075e48e200.git ~/projects/notify
 chmod +x ~/projects/notify/notify
 sudo ln -s /home/vagrant/projects/notify/notify /usr/bin/notify
+
 
 

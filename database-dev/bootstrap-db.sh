@@ -4,6 +4,7 @@
 
 # core packages
 sudo apt-get install -y ksh   # for DB2 client install
+sudo apt-get install -y libaio1 libaio-dev
 sudo apt-get install -y rpm   # for IBM GSKIT
 sudo apt-get install -y alien # for IBM GSKIT
 
@@ -12,21 +13,21 @@ sudo apt-get install -y alien # for IBM GSKIT
 sudo mkdir /opt/ibm
 sudo chown -R vagrant:vagrant /opt/ibm
 
-# copy client install source to/opt/ibm then extract
+# copy client install source to /opt/ibm then extract
 cd /opt/ibm
-cp /vagrant/ibm_data_server_runtime_client_linuxia32_v10.5.tar /opt/ibm
-gunzip ibm_data_server_runtime_client_linuxia32_v10.5.tar.gz
-tar -xvf ibm_data_server_runtime_client_linuxia32_v10.5.tar
+cp /vagrant/ibm_data_server_runtime_client_linuxx64_v11.1.tar.gz /opt/ibm
+gunzip ibm_data_server_runtime_client_linuxx64_v11.1.tar.gz
+tar -xvf ibm_data_server_runtime_client_linuxx64_v11.1.tar
 
 # remove source tar ball
-rm ibm_data_server_runtime_client_linuxia32_v10.5.tar
+rm ibm_data_server_runtime_client_linuxx64_v11.1.tar
+
+# dodgy hack to work around issues reported by db2prereqcheck
+sudo ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so
 
 # run pre-reqs script
 cd rtcl
 ./db2prereqcheck
-
-# dodgy hack to work around issues reported by db2prereqcheck
-ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so
 
 # run install script
 ./db2_install

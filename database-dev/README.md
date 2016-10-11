@@ -19,7 +19,7 @@ CLI for DB2.
 
 Provisioning steps are detailed in ```bootstrap-db.sh```. You may want to run these manually.
 
-Currently the install is performed non-root as user vagrant. This results in the DB2 client being installed into ```~/sqllib```. Whilst this works, further investigation is to be performed to install as root in ```/opt/ibm``` as originally intended.
+Currently the install is performed non-root as user vagrant. This results in the DB2 client being installed into ```~/sqllib```. Whilst this works, ideally this would install as root in ```/opt/ibm``` as originally intended.
 
 ### Usage
 
@@ -51,23 +51,26 @@ If the DB2 server you are connecting to requires a SSL connection, you will need
 
 ### Installation
 
+*11/10/2016: There is problem converting the 64bit GSKit RPMs to .deb. Whilst not actively advertised, IBM provide GSKit deb packages within this [tarball](ftp://public.dhe.ibm.com/storage/tivoli-storage-management/maintenance/client/v7r1/Linux/LinuxX86_DEB/BA/v716/7.1.6.0-TIV-TSMBAC-LinuxX86_DEB.tar)* 
+
 * Download GSKit V8 from [here](http://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/Tivoli/IBM+Global+Security+Kit&function=fixId&fixids=8.0.14.*-GSKIT-Linux*). You may need a valid IBM support account to do this.
 * Place downloaded file ```8.0.14.43-ISS-GSKIT-LinuxX64-FP0043.tar.gz``` in the Vagrant directory so that is it accessible via the VM instance.
 ```
-gunzip *.gz
-tar -xvf *.tar
+gunzip 8.0.14.43-ISS-GSKIT-LinuxX64-FP0043.tar.gz
+tar -xvf 8.0.14.43-ISS-GSKIT-LinuxX64-FP0043.tar
 ```
 * Move the extracted directory and files onto the ext4 filesystem, and change permissions to 0755 (as dpkg-deb will complain about bad permissions and refuse to create the deb packages).
 * Convert the IBM rpms to deb for use with Ubuntu (ensure ```rpm``` and ```alien``` are installed):
 ```
 for rpm in gsk*.rpm ; do sudo alien -c -d $rpm ; done
 ```
-* Install converted packages:
+
+* Install packages:
 ```
 sudo dpkg -i gskcrypt32_8.0-15.43_i386.deb
 sudo dpkg -i gskssl32_8.0-15.43_i386.deb
 ```
-* Check ```/usr/local/ibm/gsk8``` created to verify installation.
+* Check ```/usr/local/ibm/gsk8_64``` created to verify installation.
 * Create location for key files ```mkdir ~/.db2keystore``` and copy the server key (.kdb) and stash (.sth) files here.
 * Update DB2 config:
 ```
