@@ -51,7 +51,7 @@ If the DB2 server you are connecting to requires a SSL connection, you will need
 
 ### Installation
 
-11/10/2016: There is problem converting the 64bit GSKit RPMs to .deb. Whilst not actively advertised, IBM provide GSKit deb packages within this [tarball](ftp://public.dhe.ibm.com/storage/tivoli-storage-management/maintenance/client/v7r1/Linux/LinuxX86_DEB/BA/v716/7.1.6.0-TIV-TSMBAC-LinuxX86_DEB.tar)
+11/10/2016: There is problem converting the 64bit GSKit RPMs to .deb. Whilst not actively advertised, IBM provide GSKit deb packages within this tarball :ftp://public.dhe.ibm.com/storage/tivoli-storage-management/maintenance/client/v7r1/Linux/LinuxX86_DEB/BA/v716/7.1.6.0-TIV-TSMBAC-LinuxX86_DEB.tar
 
 * Download GSKit V8 from [here](http://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/Tivoli/IBM+Global+Security+Kit&function=fixId&fixids=8.0.14.*-GSKIT-Linux*). You may need a valid IBM support account to do this.
 * Place downloaded file ```8.0.14.43-ISS-GSKIT-LinuxX64-FP0043.tar.gz``` in the Vagrant directory so that is it accessible via the VM instance.
