@@ -51,7 +51,7 @@ If the DB2 server you are connecting to requires a SSL connection, you will need
 
 ### Installation
 
-*11/10/2016: There is problem converting the 64bit GSKit RPMs to .deb. Whilst not actively advertised, IBM provide GSKit deb packages within this [tarball](ftp://public.dhe.ibm.com/storage/tivoli-storage-management/maintenance/client/v7r1/Linux/LinuxX86_DEB/BA/v716/7.1.6.0-TIV-TSMBAC-LinuxX86_DEB.tar)* 
+*11/10/2016: There is problem converting the 64bit GSKit RPMs to .deb. Whilst not actively advertised, IBM provide GSKit deb packages within this [tarball](ftp://public.dhe.ibm.com/storage/tivoli-storage-management/maintenance/client/v7r1/Linux/LinuxX86_DEB/BA/v716/7.1.6.0-TIV-TSMBAC-LinuxX86_DEB.tar) * 
 
 * Download GSKit V8 from [here](http://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/Tivoli/IBM+Global+Security+Kit&function=fixId&fixids=8.0.14.*-GSKIT-Linux*). You may need a valid IBM support account to do this.
 * Place downloaded file ```8.0.14.43-ISS-GSKIT-LinuxX64-FP0043.tar.gz``` in the Vagrant directory so that is it accessible via the VM instance.
@@ -96,4 +96,53 @@ More reading:
 
 ## Oracle Client
 
-Coming....
+To install the Oracle Client (OCI, OCCI, JDBC-OCI) and SQL*Plus download both packages from [here](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html).
+
+* Move and unzip:
+
+```
+mkdir /opt/oracle
+mv instantclient-basic-linux.x64-12.1.0.2.0.zip /opt/oracle
+mv instantclient-sqlplus-linux.x64-12.1.0.2.0.zip /opt/oracle
+
+cd /opt/oracle
+unzip instantclient-basic-linux.x64-12.1.0.2.0.zip
+unzip instantclient-sqlplus-linux.x64-12.1.0.2.0.zip
+```
+
+* Create the appropriate libclntsh.so and libocci.so links for the version of Instant Client:
+```
+cd /opt/oracle/instantclient_12_1
+ln -s libclntsh.so.12.1 libclntsh.so
+ln -s libocci.so.12.1 libocci.so
+```
+
+* Set the environment variable LD_LIBRARY_PATH to the directory created:
+```
+export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1:$LD_LIBRARY_PATH
+```
+
+* To use supplied binaries such as SQL*Plus, update your PATH environment variable:
+```
+export PATH=/opt/oracle/instantclient_12_1:$PATH
+```
+
+* Test connection
+```
+sqlplus username/password@host:port/service
+
+SQL*Plus: Release 12.1.0.2.0 Production on Tue Oct 11 13:56:00 2016
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.1.0.7.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+11-OCT-16
+```
